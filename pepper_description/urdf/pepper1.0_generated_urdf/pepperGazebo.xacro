@@ -330,8 +330,8 @@
     </gazebo>
 
     <gazebo reference="WheelFL_link">
-        <mu1>1</mu1>
-        <mu2>0</mu2>
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
         <kp value="10000000.0" />
         <kd value="1.0" />
         <fdir1 value="1 0 0"/>
@@ -683,21 +683,36 @@
   </sensor>
 </gazebo> 
 -->
+<!-- <gazebo> -->
+ <!--  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so"> -->
+<!--     <alwaysOn>true</alwaysOn> -->
+<!--     <updateRate>100</updateRate> -->
+<!--     <robotNamespace>/</robotNamespace> -->
+<!--     <leftJoint>WheelFL</leftJoint> -->
+<!--     <rightJoint>WheelFR</rightJoint> -->
+<!--     <wheelSeparation>0.170</wheelSeparation> -->
+<!--     <wheelDiameter>0.140</wheelDiameter> -->
+<!--     <torque>36.9</torque> -->
+<!--     <commandTopic>cmd_vel</commandTopic> -->
+<!--     <odometryTopic>odom_diffdrive</odometryTopic> -->
+<!--     <odometryFrame>odom</odometryFrame> -->
+<!--     <robotBaseFrame>base_footprint</robotBaseFrame> -->
+<!--   </plugin> -->
+<!-- </gazebo> -->
+
 <gazebo>
-  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>100</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftJoint>WheelFL</leftJoint>
-    <rightJoint>WheelFR</rightJoint>
-    <wheelSeparation>0.170</wheelSeparation>
-    <wheelDiameter>0.140</wheelDiameter>
-    <torque>36.9</torque>
+  <plugin name="planar_move_controller" filename="libgazebo_ros_planar_move.so">
+  <!-- <plugin name="force_based_move_controller" filename="libgazebo_ros_force_based_move.so"> -->
     <commandTopic>cmd_vel</commandTopic>
-    <odometryTopic>odom_diffdrive</odometryTopic>
+    <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
+    <odometryRate>20.0</odometryRate>
     <robotBaseFrame>base_footprint</robotBaseFrame>
+    <!-- <publishOdometryTf>0</publishOdometryTf> -->
+    <!-- <yaw_velocity_p_gain>10000000.0</yaw_velocity_p_gain> -->
+    <!-- <x_velocity_p_gain>10000000.0</x_velocity_p_gain> -->
+    <!-- <y_velocity_p_gain>10000000.0</y_velocity_p_gain> -->
   </plugin>
 </gazebo>
-</robot>
 
+</robot>
